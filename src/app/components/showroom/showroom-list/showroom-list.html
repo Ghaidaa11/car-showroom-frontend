@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="d-flex justify-content-end">
+    <button matFab extended class="m-2 d-flex align-items-center p-2"
+    (click)="goToCreatePage()"
+    >
+          <mat-icon class="mx-1">library_add</mat-icon>
+          Add new Car Shoroom
+    </button>
+  </div>
+
+  <app-table-with-pagination
+      [data]="data"
+      [displayedColumns]="displayedColumns"
+      [columnHeaders]="columnHeaders"
+      [totalItems]="totalItems"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      [sortableFields]="['name', 'commercialRegistrationNumber', 'contactNumber']"
+      [sortBy]="sortBy"
+      [sortDir]="sortDir"
+      (sortChange)="onSortChange($event)"
+      (pageChange)="onPageChange($event)">
+  
+      <ng-template #cellActions let-element>
+      <button (click)="edit(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button (click)="delete(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button (click)="goToDetails(element)">
+      <mat-icon>visibility</mat-icon>
+    </button>
+    </ng-template>
+  
+  </app-table-with-pagination>
+</div>

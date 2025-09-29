@@ -1,0 +1,99 @@
+
+<div class = "container">
+
+   <app-card 
+    [title] = "title"
+    [subtitle] = "subtitle"
+    >
+        <form [formGroup]="showroomForm" (ngSubmit)="onSubmit()" class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="showroom name"
+          formControlName="name"
+        />
+        <div *ngIf="showroomForm.get('name')?.touched && showroomForm.get('name')?.invalid">
+          <mat-error *ngIf="showroomForm.get('name')?.errors?.['required']">Required.</mat-error>
+          <mat-error *ngIf="showroomForm.get('name')?.errors?.['pattern']">Must be exactly 10 digits.</mat-error>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Commercial Registration Number</mat-label>
+        <input
+          matInput
+          placeholder="cr number"
+          formControlName="commercialRegistrationNumber"
+        />
+        <div *ngIf="showroomForm.get('commercialRegistrationNumber')?.touched && showroomForm.get('commercialRegistrationNumber')?.invalid">
+          <mat-error *ngIf="showroomForm.get('commercialRegistrationNumber')?.errors?.['required']">Required.</mat-error>
+          <mat-error *ngIf="showroomForm.get('commercialRegistrationNumber')?.errors?.['pattern']">Must be exactly 10 digits.</mat-error>
+        </div>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Manager</mat-label>
+        <mat-select *ngIf = "managers" formControlName="managerId">
+          <mat-option *ngFor="let manager of managers" [value]="manager.id">
+            {{ manager.firstName }} {{ manager.lastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Contact Number</mat-label>
+        <input
+          matInput
+          placeholder="5********"
+          formControlName="contactNumber"
+        />
+        <div *ngIf="showroomForm.get('contactNumber')?.touched && showroomForm.get('contactNumber')?.invalid">
+          <mat-error *ngIf="showroomForm.get('contactNumber')?.errors?.['required']">Required.</mat-error>
+          <mat-error *ngIf="showroomForm.get('contactNumber')?.errors?.['pattern']">Must be numeric up to 15 digits.</mat-error>
+        </div>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          placeholder="Enter address"
+          formControlName="address"
+        />
+        <div *ngIf="showroomForm.get('address')?.touched && showroomForm.get('address')?.invalid">
+          <mat-error *ngIf="showroomForm.get('address')?.errors?.['maxlength']">Max 255 characters allowed.</mat-error>
+        </div>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="showroomForm.invalid">
+        Create Showroom
+      </button>
+    </div>
+  </div>
+
+</form>
+  
+  </app-card>
+
+</div>
+

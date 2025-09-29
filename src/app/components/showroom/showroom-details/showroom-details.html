@@ -1,0 +1,17 @@
+<div *ngIf="showroom" class="m-4">
+
+    <app-card 
+    [title] = "showroom.name"
+    [subtitle] = "'Manager: ' + showroom.manager.firstName + ' ' + showroom.manager.lastName"
+    *ngIf="showroom"
+    >
+
+      <p><strong>CR:</strong> {{ showroom.commercialRegistrationNumber }}</p>
+      <p><strong>Contact:</strong> {{ showroom.contactNumber }}</p>
+      <p><strong>Address:</strong> {{ showroom.address }}</p>
+      <button (click)="edit(showroom)" class="d-flex align-items-center p-1">
+            <mat-icon class="mx-1">edit</mat-icon> Edit
+      </button>
+    </app-card>
+
+</div>

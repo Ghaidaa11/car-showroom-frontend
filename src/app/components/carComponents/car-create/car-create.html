@@ -1,0 +1,79 @@
+<div class="container">
+  <app-card [title]="title" [subtitle]="subtitle">
+
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()" class="container">
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>VIN</mat-label>
+            <input matInput formControlName="vin" placeholder="Vehicle Identification Number" />
+            <mat-error *ngIf="carForm.get('vin')?.hasError('required')">VIN is required</mat-error>
+            <mat-error *ngIf="carForm.get('vin')?.hasError('maxlength')">Max 25 characters</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Maker</mat-label>
+            <input matInput formControlName="maker" placeholder="Maker (e.g., Toyota)" />
+            <mat-error *ngIf="carForm.get('maker')?.hasError('required')">Maker is required</mat-error>
+            <mat-error *ngIf="carForm.get('maker')?.hasError('maxlength')">Max 25 characters</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" placeholder="Model (e.g., Camry)" />
+            <mat-error *ngIf="carForm.get('model')?.hasError('required')">Model is required</mat-error>
+            <mat-error *ngIf="carForm.get('model')?.hasError('maxlength')">Max 25 characters</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Model Year</mat-label>
+            <input matInput type="number" formControlName="modelYear" placeholder="e.g., 2023" />
+            <mat-error *ngIf="carForm.get('modelYear')?.hasError('required')">Model year is required</mat-error>
+            <mat-error *ngIf="carForm.get('modelYear')?.hasError('pattern')">Must be a 4-digit number</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" formControlName="price" placeholder="e.g., 50000" />
+            <mat-error *ngIf="carForm.get('price')?.hasError('required')">Price is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Showroom</mat-label>
+            <mat-select formControlName="showroomId">
+              <mat-option *ngFor="let showroom of showrooms" [value]="showroom.id">
+                {{ showroom.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="carForm.get('showroomId')?.hasError('required')">Showroom is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="carForm.invalid">
+            Create Car
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </app-card>
+</div>
