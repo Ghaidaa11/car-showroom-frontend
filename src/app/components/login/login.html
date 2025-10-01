@@ -1,0 +1,34 @@
+<div class="login-wrapper">
+  <mat-card class="login-card" appearance="outlined">
+    <h2 class="login-title">Sign In</h2>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" required [(ngModel)]="phone" name="phone" #phoneInput="ngModel" />
+        <mat-error *ngIf="phoneInput.invalid && phoneInput.touched">Phone is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput
+               [type]="hidePassword ? 'password' : 'text'"
+               required
+               [(ngModel)]="password"
+               name="password"
+               #passwordInput="ngModel" />
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" 
+                [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">Password is required</mat-error>
+      </mat-form-field>
+
+  <mat-error *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </mat-error>
+
+      <button mat-raised-button color="primary" class="full-width" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </mat-card>
+</div>

@@ -99,8 +99,13 @@ export class ShowroomList implements OnInit  {
       })
       .subscribe((confirmed) => {
         if (confirmed) {
-          this.showroomService.deleteShowroom(row.id, () => {
-            this.fetchDate(1, this.pageSize)
+          this.showroomService.deleteShowroom(row.id).subscribe({
+            next: () => {
+              this.fetchDate(this.currentPage, this.pageSize)
+            },
+            error: (err) => {
+              console.log('Failed to delete showroom', err);
+            }
           })
           console.log('Item deleted');
         } else {

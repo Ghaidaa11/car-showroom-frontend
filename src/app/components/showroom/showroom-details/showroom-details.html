@@ -1,17 +1,80 @@
-<div *ngIf="showroom" class="m-4">
+<div class="container">
+<app-tabs [tabs]="tabs" [tabTemplates]="tabTemplates" [selectedIndex]="0"></app-tabs>
 
-    <app-card 
-    [title] = "showroom.name"
-    [subtitle] = "'Manager: ' + showroom.manager.firstName + ' ' + showroom.manager.lastName"
-    *ngIf="showroom"
-    >
+<ng-template #tab0> 
+  <div *ngIf="showroom" class="m-4">
+  
+      <app-card 
+      [title] = "showroom.name"
+      [subtitle] = "'Manager: ' + showroom.manager.firstName + ' ' + showroom.manager.lastName"
+      *ngIf="showroom"
+      >
+  
+        <p><strong>CR:</strong> {{ showroom.commercialRegistrationNumber }}</p>
+        <p><strong>Contact:</strong> {{ showroom.contactNumber }}</p>
+        <p><strong>Address:</strong> {{ showroom.address }}</p>
+        <button (click)="edit(showroom)" class="d-flex align-items-center p-1">
+              <mat-icon class="mx-1">edit</mat-icon> Edit
+        </button>
+      </app-card>
+  
+  </div>
 
-      <p><strong>CR:</strong> {{ showroom.commercialRegistrationNumber }}</p>
-      <p><strong>Contact:</strong> {{ showroom.contactNumber }}</p>
-      <p><strong>Address:</strong> {{ showroom.address }}</p>
-      <button (click)="edit(showroom)" class="d-flex align-items-center p-1">
-            <mat-icon class="mx-1">edit</mat-icon> Edit
+</ng-template>
+
+<ng-template #tab1>
+  <div class="container">
+    <div class="d-flex justify-content-end">
+      <button mat-fab extended class="m-2 d-flex align-items-center p-2" (click)="goToCreatePage()">
+        <mat-icon class="mx-1">library_add</mat-icon>
+        Add new Car To Showroom
       </button>
-    </app-card>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSearch()" class="search-form">
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="mx-2">
+          <mat-label>VIN</mat-label>
+          <input matInput formControlName="vin" placeholder="Vehicle VIN" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="mx-2">
+          <mat-label>Maker</mat-label>
+          <input matInput formControlName="maker" placeholder="Maker" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="mx-2">
+          <mat-label>Model</mat-label>
+          <input matInput formControlName="model" placeholder="Model" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="mx-2">
+          <mat-label>Model Year</mat-label>
+          <input matInput type="number" formControlName="modelYear" placeholder="Year" />
+        </mat-form-field>
+
+        <button mat-icon-button color="primary" type="submit" class="search-btn" aria-label="Search">
+          <mat-icon>search</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" type="button" (click)="clearFields()" class="search-btn" aria-label="Clear">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </form>
+
+    <ng-container *ngIf="data && data.length > 0">
+      <app-table-with-pagination
+        [data]="data"
+        [displayedColumns]="displayedColumns"
+        [columnHeaders]="columnHeaders"
+        [totalItems]="totalItems"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)">
+      </app-table-with-pagination>
+    </ng-container>
+  </div>
+</ng-template>
 
 </div>

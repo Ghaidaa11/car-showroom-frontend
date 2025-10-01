@@ -1,0 +1,21 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.logout-btn {
+  margin-left: auto; 
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -30,5 +30,8 @@ export const End_POINTS = {
     ALL_SHOWROOMS_AS_LIST: {
         URL: '/api/v1/car-showroom/list'
     },
+    LOGIN: {
+        URL: '/login'
+    }
     
 }

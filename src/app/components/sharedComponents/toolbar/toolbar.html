@@ -1,0 +1,8 @@
+<mat-toolbar color="accent" class="toolbar">
+  <span class="title">My Application</span>
+  <button mat-button routerLink="/showrooms" routerLinkActive="active-link">Showrooms</button>
+  <button mat-button routerLink="/cars" routerLinkActive="active-link">Cars</button>
+  <button mat-icon-button (click)="logout()" aria-label="Logout" class="logout-btn">
+    <mat-icon>input</mat-icon>
+  </button>
+</mat-toolbar>

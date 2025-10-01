@@ -43,9 +43,8 @@ export class Showroom {
     await firstValueFrom(this.http.patch(`${baseUrl + End_POINTS.UPDATE_SHOWROOM.URL(id)}`, body))
   }
 
-  async deleteShowroom(id: number, callback?: () => void) {
-    await firstValueFrom(this.http.delete(`${baseUrl + End_POINTS.DELETE_SHOWROOM.URL(id)}`))
-    callback && callback()
+  deleteShowroom(id: number): Observable<void> {
+    return this.http.delete<void>(`${baseUrl + End_POINTS.DELETE_SHOWROOM.URL(id)}`)
   }
 
   getShowrooms(): Observable<ListShowroomResponse []> {

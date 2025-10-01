@@ -5,6 +5,7 @@ import { ShowroomDetails } from './components/showroom/showroom-details/showroom
 import { ShowroomUpdate } from './components/showroom/showroom-update/showroom-update';
 import { CarList } from './components/carComponents/car-list/car-list';
 import { CarCreate } from './components/carComponents/car-create/car-create';
+import { Login } from './components/login/login';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path:'cars/create',
         component: CarCreate
+    },
+    {
+        path:'',
+        component: Login
     }
 ];
