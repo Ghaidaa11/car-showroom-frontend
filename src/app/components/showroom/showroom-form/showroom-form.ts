@@ -68,7 +68,7 @@ export class ShowroomForm implements OnInit {
         this.router.navigate(['/showrooms'])
       } catch (err: any) {
         console.error(err);
-        this.showToast(err?.error?.message || 'Failed to create showroom.', 'error');
+        this.showToast(err?.error || 'Failed to create showroom.', 'error');
       }
     }
   }
